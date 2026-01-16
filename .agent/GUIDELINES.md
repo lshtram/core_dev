@@ -19,3 +19,10 @@
 
 - If project documentation contradicts a user request, flag the contradiction immediately.
 - If a "Gold Standard" pattern is being violated for a justified reason, document the rationale in the plan.
+
+## Operational Discipline
+
+1.  **Worktree Awareness**: When using the Parallel Development Workflow, ALL commands (`git`, `npm`, `npx`) and ALL file edits MUST be executed within the active worktree directory (e.g., `.worktrees/feature-name`). Never operate in the root unless explicitly maintaining shared config.
+2.  **Supabase RLS**: Remember that Postgres RLS policies often return **Zero Rows** (silent filtering) rather than throwing errors. Design tests to assert `data.length === 0` for unauthorized access.
+3.  **Schema Authority**: Avoid modifying the system-protected `auth` schema in migrations. Create helper functions in the `public` schema (e.g., `public.user_role()`) to avoid permission issues.
+4.  **Supabase MCP**: Usage of Supabase MCP to manipulate remote projects allows for powerful verification but requires STRICT user approval. You must explicitly ask for permission and confirm the target Project Name before running any write/delete operations (migrations, SQL execution, etc.).

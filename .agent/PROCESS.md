@@ -4,6 +4,7 @@ You MUST follow these gates in sequence. At every [GATE], stop and wait for user
 
 0. **Workspace Setup**: Initialize the parallel environment.
    - **Action**: Use the `start_task` skill. See [PARALLEL_WORKFLOW.md](../docs/PARALLEL_WORKFLOW.md).
+   - **Constraint**: Immediately switch context to `.worktrees/<feature-name>`. Do not verify or edit in the root.
 1. **Requirements & PRD**: Scan relevant files; flag potential risks.
    - **Check**: Verify consistency against `docs/PRD_Core_Framework.md` (Master PRD). Feature PRDs must be a strict subset or extension, not a contradiction.
    - **Artifact**: Create `docs/PRD.md` (Do NOT hide in scratchpad).
