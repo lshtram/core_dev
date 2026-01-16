@@ -50,19 +50,21 @@
 
 #### REQ-FILE: File System & Storage
 
-| ID           | Requirement                             | Priority | Status | Verified By (File > Test)          | Notes |
-| :----------- | :-------------------------------------- | :------: | :----: | :--------------------------------- | :---- |
-| REQ-FILE-001 | **Explorer UI**: Folder/File browsing   |    P1    |   ❌   | `tests/e2e/files/explorer.spec.ts` |       |
-| REQ-FILE-002 | **Upload**: File upload with quotas     |    P1    |   ❌   | `tests/storage/upload.test.ts`     |       |
-| REQ-FILE-003 | **Delete**: Remove files                |    P1    |   ❌   | `tests/storage/delete.test.ts`     |       |
-| REQ-FILE-004 | **Move**: Relocate files                |    P1    |   ❌   | `tests/storage/move.test.ts`       |       |
-| REQ-FILE-005 | **Rename**: Rename files/folders        |    P1    |   ❌   | `tests/storage/meta.test.ts`       |       |
-| REQ-FILE-006 | **Download**: Secure link generation    |    P1    |   ❌   | `tests/storage/download.test.ts`   |       |
-| REQ-FILE-007 | **Visibility**: Strict RLS enforcement  |    P0    |   ❌   | `tests/storage/rls.test.ts`        |       |
-| REQ-FILE-008 | **Admin Access**: View ALL files        |    P1    |   ❌   | `tests/storage/admin.test.ts`      |       |
-| REQ-FILE-009 | **Private Isolation**: Own files only   |    P0    |   ❌   | `tests/storage/rls.test.ts`        |       |
-| REQ-FILE-010 | **Storage Quotas**: Enforce max storage |    P1    |   ❌   | `tests/storage/quotas.test.ts`     |       |
-| REQ-FILE-011 | **Quota UI**: Visual display            |    P2    |   ❌   | `tests/e2e/files/quota.spec.ts`    |       |
+| ID  | Requirement | Priority | Status | Verified By (File > Test) | Notes |
+| :-- | :---------- | :------: | :----: | :------------------------ | :---- |
+
+> **Detailed Spec**: [docs/PRD_FileSystem.md](PRD_FileSystem.md)
+> | REQ-FILE-001 | **Explorer UI**: Folder/File browsing | P1 | ✅ | `src/components/files/FileExplorer.tsx` | Basics provided |
+> | REQ-FILE-002 | **Upload**: File upload with quotas | P1 | ✅ | `src/modules/files/FileService.ts` | Service Layer |
+> | REQ-FILE-003 | **Delete**: Remove files | P1 | ✅ | `src/modules/files/FileService.ts` | Soft Delete |
+> | REQ-FILE-004 | **Move**: Relocate files | P1 | ✅ | `src/modules/files/FileService.ts` | Metadata Move |
+> | REQ-FILE-005 | **Rename**: Rename files/folders | P1 | ✅ | `src/modules/files/FileService.ts` | metadata update |
+> | REQ-FILE-006 | **Download**: Secure link generation | P1 | ✅ | `src/modules/files/FileService.ts` | Signed URLs |
+> | REQ-FILE-007 | **Visibility**: Strict RLS enforcement | P0 | ✅ | `supabase/migrations/..._filesystem.sql`| |
+> | REQ-FILE-008 | **Admin Access**: View ALL files | P1 | ❌ | | Future scope |
+> | REQ-FILE-009 | **Private Isolation**: Own files only | P0 | ✅ | `supabase/migrations/..._filesystem.sql`| |
+> | REQ-FILE-010 | **Storage Quotas**: Enforce max storage | P1 | ❌ | `tests/storage/quotas.test.ts` | |
+> | REQ-FILE-011 | **Quota UI**: Visual display | P2 | ❌ | `tests/e2e/files/quota.spec.ts` | |
 
 #### REQ-NOTIFY: Notifications
 
