@@ -22,6 +22,9 @@ You MUST follow these gates in sequence. At every [GATE], stop and wait for user
 7. **E2E Validation**: Run `.agent/scripts/verify.py --e2e`.
 8. **User QA Transfer**: Generate a concise "Review Note" for the manual vibe check.
 9. **Post-Mortem**: Identify friction points AND operational inefficiencies (e.g., slow command paths).
-10. **Doc Sync**: Update relevant docs. Ask for approval if major changes occur.
+10. **Doc Sync (CRITICAL)**:
+    - **Update Requirements**: Mark relevant PRD items as ✅ (Pass) in `docs/PRD_Core_Framework.md` and feature-specific PRDs.
+    - **Traceability**: Ensure every verified requirement links to its test file.
+    - **Doc Audit**: Check if architecture diagrams or API docs need updates.
 11. **Learning Loop**: Propose updates to `.agent/GUIDELINES.md`. Identify if a **New Skill** is needed.
     - **[GATE]**: User signs off on "Agent Memory Update."
