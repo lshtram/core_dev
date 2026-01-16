@@ -25,7 +25,7 @@ At startup, run `.agent/scripts/read_context.sh` to load immediate context (Git 
 
 ## Boundaries
 
-- **Forbidden:** Modifying `.env` files, deleting root directories without confirmation.
+- **Forbidden:** Modifying `.env` files, deleting root directories without confirmation, **bypassing verification checks** (e.g., `--no-verify`, ignoring build errors) without explicit permission.
 - **Ask First:** Installing new dependencies, making database schema changes.
 - **Auto-Allowed:** Reading any file, running automated tests, creating/editing components within established patterns.
 
