@@ -40,22 +40,22 @@
 
 | ID           | Requirement                                        | Priority | Status | Verified By (File > Test)         | Notes         |
 | :----------- | :------------------------------------------------- | :------: | :----: | :-------------------------------- | :------------ |
-| REQ-RBAC-001 | **Role Schema**: Implement 5-tier Enum (above)     |    P0    |   ❌   | `tests/auth/rbac_schema.test.ts`  | DB Constraint |
-| REQ-RBAC-002 | **Public Read**: Profiles visible to auth users    |    P0    |   ❌   | `tests/auth/rls_profiles.test.ts` | RLS Policy    |
-| REQ-RBAC-003 | **Self-Update**: User edits own profile only       |    P0    |   ❌   | `tests/auth/rls_profiles.test.ts` | RLS Policy    |
-| REQ-RBAC-004 | **Role Integrity**: Only Admin modifies roles      |    P0    |   ❌   | `tests/auth/rls_roles.test.ts`    | RLS Policy    |
-| REQ-RBAC-009 | **Route Guard**: Middleware redirects unauthorized |    P0    |   ❌   | `tests/middleware/rbac.test.ts`   | Middleware    |
+| REQ-RBAC-001 | **Role Schema**: Implement 5-tier Enum (above)     |    P0    |   ✅   | `tests/auth/rbac_schema.test.ts`  | DB Constraint |
+| REQ-RBAC-002 | **Public Read**: Profiles visible to auth users    |    P0    |   ✅   | `tests/auth/rls_profiles.test.ts` | RLS Policy    |
+| REQ-RBAC-003 | **Self-Update**: User edits own profile only       |    P0    |   ✅   | `tests/auth/rls_profiles.test.ts` | RLS Policy    |
+| REQ-RBAC-004 | **Role Integrity**: Only Admin modifies roles      |    P0    |   ✅   | `tests/auth/rls_roles.test.ts`    | RLS Policy    |
+| REQ-RBAC-009 | **Route Guard**: Middleware redirects unauthorized |    P0    |   ✅   | `tests/middleware/rbac.test.ts`   | Middleware    |
 
 #### REQ-RBAC-UI: Admin Interface & UX
 
 | ID             | Requirement                                         | Priority | Status | Verified By (File > Test)                  | Notes           |
 | :------------- | :-------------------------------------------------- | :------: | :----: | :----------------------------------------- | :-------------- |
-| REQ-RBAC-UI-01 | **User Table**: Columns [Name, Email, Role, Joined] |    P0    |   ❌   | `stories/admin/UserTable.stories.tsx`      | ShadCN Table    |
-| REQ-RBAC-UI-02 | **Role Badge**: Color-coded badges for roles        |    P1    |   ❌   | `stories/components/RoleBadge.stories.tsx` | Visual Aid      |
+| REQ-RBAC-UI-01 | **User Table**: Columns [Name, Email, Role, Joined] |    P0    |   ✅   | `stories/admin/UserTable.stories.tsx`      | ShadCN Table    |
+| REQ-RBAC-UI-02 | **Role Badge**: Color-coded badges for roles        |    P1    |   ✅   | `stories/components/RoleBadge.stories.tsx` | Visual Aid      |
 | REQ-RBAC-UI-03 | **Edit Action**: Dropdown to change Role            |    P0    |   ❌   | `stories/admin/RoleSelect.stories.tsx`     | Optimistic UI   |
 | REQ-RBAC-UI-04 | **Self-Demotion Guard**: Disable "Edit" on self     |    P1    |   ❌   | `tests/e2e/admin/roles.spec.ts`            | Prevent lockout |
 | REQ-RBAC-UI-05 | **Create Modal**: Simple form [Email, Role]         |    P1    |   ❌   | `stories/admin/UserModal.stories.tsx`      | invites user    |
-| REQ-RBAC-UI-06 | **403 Page**: Friendly "Access Denied" UI           |    P1    |   ❌   | `stories/pages/403.stories.tsx`            | Not just JSON   |
+| REQ-RBAC-UI-06 | **403 Page**: Friendly "Access Denied" UI           |    P1    |   ✅   | `stories/pages/403.stories.tsx`            | Not just JSON   |
 
 ## 4. Success Metrics
 
