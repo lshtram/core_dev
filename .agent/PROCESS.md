@@ -7,7 +7,7 @@ You MUST follow these gates in sequence. At every [GATE], stop and wait for user
    - **Constraint**: Immediately switch context to `.worktrees/<feature-name>`. Do not verify or edit in the root.
 1. **Requirements & PRD**: Scan relevant files; flag potential risks.
    - **Check**: Verify consistency against `docs/PRD_Core_Framework.md` (Master PRD). Feature PRDs must be a strict subset or extension, not a contradiction.
-   - **Artifact**: Create `docs/PRD.md` (Do NOT hide in scratchpad).
+   - **Artifact**: Create `docs/PRD_<FeatureName>.md` (e.g., `PRD_FileSystem.md`). Do NOT use generic `PRD.md`.
 2. **Tech Spec & Architecture**: Generate `docs/TECH_SPEC.md` (renamed from scratchpad).
    - **[GATE]**: User must approve the Technical Specification.
 3. **UI Prototyping (Code-First)**: For any new UI, create `prototypes/<feature>.html`.
@@ -24,7 +24,7 @@ You MUST follow these gates in sequence. At every [GATE], stop and wait for user
 9. **Post-Mortem**: Identify friction points AND operational inefficiencies (e.g., slow command paths).
 10. **Doc Sync (CRITICAL)**:
     - **Update Requirements**: Mark relevant PRD items as ✅ (Pass) in `docs/PRD_Core_Framework.md` and feature-specific PRDs.
-    - **Traceability**: Ensure every verified requirement links to its test file.
+    - **Traceability (NEW)**: Update `docs/TEST_REPORT.md` with new test files and their status.
     - **Doc Audit**: Check if architecture diagrams or API docs need updates.
 11. **Learning Loop**: Propose updates to `.agent/GUIDELINES.md`. Identify if a **New Skill** is needed.
     - **[GATE]**: User signs off on "Agent Memory Update."
