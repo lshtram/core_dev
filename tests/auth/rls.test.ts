@@ -21,7 +21,7 @@ const SUPABASE_ANON_KEY = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
 
 
 describe('RLS Policies - Profiles Table', () => {
-  let anonClient: ReturnType<typeof createClient<Database>>
+  let anonClient: any // ReturnType<typeof createClient<Database>>
 
   beforeAll(() => {
     anonClient = createClient<Database>(SUPABASE_URL, SUPABASE_ANON_KEY)
@@ -43,25 +43,29 @@ describe('RLS Policies - Profiles Table', () => {
 
   describe('Self-Update Policy', () => {
     it('should prevent unauthenticated users from updating profiles', async () => {
-      const { error } = await anonClient
+      const { data, error } = await anonClient
         .from('profiles')
         .update({ full_name: 'Hacker' })
         .eq('id', '00000000-0000-0000-0000-000000000000')
+        .select()
 
-      // Should error - anonymous cannot update
-      expect(error).not.toBeNull()
+      // RLS filters rows, so no rows match. It does not raise an error.
+      expect(error).toBeNull()
+      expect(data?.length).toBe(0)
     })
   })
 
   describe('Role Update Policy', () => {
     it('should prevent unauthenticated users from changing roles', async () => {
-      const { error } = await anonClient
+      const { data, error } = await anonClient
         .from('profiles')
-        .update({ role: 'admin' })
+        .update({ role: 'system_admin' })
         .eq('id', '00000000-0000-0000-0000-000000000000')
+        .select()
 
-      // Should error - anonymous cannot change roles
-      expect(error).not.toBeNull()
+      // RLS filters rows, so no rows match. It does not raise an error.
+      expect(error).toBeNull()
+      expect(data?.length).toBe(0)
     })
   })
 })

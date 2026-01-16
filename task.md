@@ -1,11 +1,22 @@
-# Task: feature-core-saas-requirements
+# Task: feature-core-rbac
 
-- [x] Initialize Worktree
-- [x] Draft PRD (`.agent/scratchpad/PRD_current.md`) <!-- id: 0 -->
-- [ ] User Approval of PRD <!-- id: 1 -->
-- [x] User Approval of PRD <!-- id: 4 -->
-- [x] Create Tech Spec (`.agent/scratchpad/TECH_SPEC_current.md`) <!-- id: 5 -->
-- [x] Create ADR: Single-Org Architecture <!-- id: 6 -->
-- [x] Create ADR: Payment Abstraction Layer <!-- id: 7 -->
-- [x] User Approval of Tech Spec <!-- id: 8 -->
-- [ ] Initialize Implementation Phase <!-- id: 9 -->
+- [x] Initialize Worktree <!-- id: 0 -->
+- [x] Draft PRD (`docs/PRD_RBAC.md`) <!-- id: 1 -->
+- [x] User Approval of PRD <!-- id: 2 -->
+- [x] Create Tech Spec (`docs/TECH_SPEC.md`) <!-- id: 3 -->
+- [ ] UI Prototyping <!-- id: 10 -->
+  - [x] Admin Dashboard Mockup <!-- id: 11 -->
+  - [x] 403 Access Denied Mockup <!-- id: 12 -->
+  - [x] Style Guide & CSS Variables <!-- id: 13 -->
+- [x] User Approval of Tech Spec & UX <!-- id: 4 -->
+- [x] Implementation Loop <!-- id: 5 -->
+  - [x] Role Enum & Types <!-- id: 6 -->
+  - [x] RLS Policies <!-- id: 7 -->
+  - [x] Middleware & Redirects <!-- id: 8 -->
+  - [x] Admin Dashboard UI <!-- id: 8a -->
+  - [x] 403 Page UI <!-- id: 8b -->
+- [x] Verification (Lint/Type/Unit) <!-- id: 9 -->
+  - [x] Manual Verification (Browser) <!-- id: 9a -->
+- [x] E2E Validation <!-- id: 10 -->
+  - [x] Verified via Real Env (Supabase MCP) <!-- id: 10a -->
+- [x] Merge Request <!-- id: 11 -->
