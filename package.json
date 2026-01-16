@@ -1,23 +1,36 @@
 {
-  "name": "core_dev",
-  "version": "1.0.0",
-  "main": "index.js",
+  "name": "boilerplate",
+  "version": "0.1.0",
+  "private": true,
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "generate": "plop",
-    "prepare": "husky"
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "eslint",
+    "test": "vitest",
+    "test:run": "vitest run"
   },
   "dependencies": {
-    "react": "^18.3.1",
-    "react-dom": "^18.3.1"
+    "@supabase/ssr": "^0.8.0",
+    "@supabase/supabase-js": "^2.90.1",
+    "idb-keyval": "^6.2.2",
+    "lucide-react": "^0.562.0",
+    "next": "16.1.2",
+    "react": "19.2.3",
+    "react-dom": "19.2.3",
+    "zustand": "^5.0.10"
   },
   "devDependencies": {
+    "@testing-library/jest-dom": "^6.9.1",
     "@testing-library/react": "^16.3.1",
-    "husky": "^9.1.7",
-    "markdownlint-cli2": "^0.20.0",
-    "plop": "^4.0.4",
-    "typescript": "^5.9.3",
+    "@types/node": "^20",
+    "@types/react": "^19",
+    "@types/react-dom": "^19",
+    "@vitejs/plugin-react": "^5.1.2",
+    "eslint": "^9",
+    "eslint-config-next": "16.1.2",
+    "jsdom": "^27.4.0",
+    "typescript": "^5",
     "vitest": "^4.0.17"
-  },
-  "description": ""
+  }
 }
