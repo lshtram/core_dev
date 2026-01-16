@@ -19,7 +19,7 @@
 2.  **Check Context**: Are you in a worktree? (`git branch --show-current`).
 3.  **Load Skills**: If starting a task, read `.agent/skills/start_task.md` and follow it MANUALLY. Do not trust "magic scripts" unless validated.
 
-At startup, run `strong-prompt` in **Audit Mode**.
+At startup, run `.agent/scripts/read_context.sh` to load immediate context (Git status, Tasks, Docs).
 
 - **Capabilities**: Reference `.agent/skills/README.md` for available tools.
 
