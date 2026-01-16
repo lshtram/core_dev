@@ -1,29 +1,59 @@
+/* 
+  GLOBAL CSS & DESIGN SYSTEM 
+  Source of Truth: docs/prototypes/shared.css
+*/
+
 :root {
-  --background: hsl(220 20% 98%);
-  --foreground: hsl(220 30% 10%);
-  --primary: hsl(220 80% 50%);
-  --secondary: hsl(220 10% 40%);
-  --accent: hsl(20 90% 55%);
-  --border: hsl(220 15% 90%);
+  /* Colors: Slate/Zinc Theme (Light Mode Default) */
+  --background: #ffffff;
+  --foreground: #020617;
+
+  --primary: #0f172a;
+  --primary-foreground: #f8fafc;
+
+  --muted: #f1f5f9;
+  --muted-foreground: #64748b;
+
+  --accent: #f1f5f9;
+  --accent-foreground: #0f172a;
+
+  --destructive: #ef4444;
+  --destructive-foreground: #f8fafc;
+
+  --border: #e2e8f0;
+  --input: #e2e8f0;
+  --ring: #94a3b8;
+
   --radius: 0.5rem;
 
-  /* Spacing - Logical */
+  /* Spacing */
   --space-xs: 0.5rem;
   --space-sm: 1rem;
   --space-md: 1.5rem;
   --space-lg: 2rem;
+
+  /* Typography */
+  --font-stack: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: hsl(220 30% 5%);
-    --foreground: hsl(220 10% 95%);
-    --border: hsl(220 20% 15%);
-    --secondary: hsl(220 10% 60%);
-  }
-  
-  html {
-    color-scheme: dark;
+    /* Adaptive Dark Mode (Best Guess Mapping) */
+    --background: #020617;
+    --foreground: #f8fafc;
+    
+    --primary: #f8fafc;
+    --primary-foreground: #0f172a;
+    
+    --muted: #1e293b;
+    --muted-foreground: #94a3b8;
+    
+    --accent: #1e293b;
+    --accent-foreground: #f8fafc;
+    
+    --border: #1e293b;
+    --input: #1e293b;
+    --ring: #cbd5e1;
   }
 }
 
@@ -33,8 +63,7 @@
   margin: 0;
 }
 
-html,
-body {
+html, body {
   height: 100%;
   max-width: 100vw;
   overflow-x: hidden;
@@ -43,13 +72,104 @@ body {
 body {
   color: var(--foreground);
   background: var(--background);
-  font-family: var(--font-primary, system-ui), sans-serif;
+  font-family: var(--font-stack);
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
 }
 
-/* Logical Layout Helpers */
+/* 
+  ---------------------------
+  UTILITY CLASSES (From Shared Prototype)
+  ---------------------------
+*/
+
+/* 1. BUTTONS */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--radius);
+  font-size: 0.875rem;
+  font-weight: 500;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+  transition: all 0.2s;
+  border: 1px solid transparent;
+  text-decoration: none;
+  font-family: inherit;
+  background: none;
+}
+
+.btn-primary {
+  background-color: var(--primary);
+  color: var(--primary-foreground);
+}
+.btn-primary:hover { opacity: 0.9; }
+
+.btn-secondary {
+  background-color: var(--muted);
+  color: var(--foreground);
+}
+.btn-secondary:hover { background-color: var(--border); }
+
+.btn-outline {
+  border-color: var(--border);
+  background-color: transparent;
+  color: var(--foreground);
+}
+.btn-outline:hover { background-color: var(--accent); }
+
+.btn-ghost {
+  background-color: transparent;
+  color: var(--foreground);
+}
+.btn-ghost:hover { background-color: var(--accent); }
+
+.btn-destructive {
+  background-color: var(--destructive);
+  color: var(--destructive-foreground);
+}
+
+/* 2. INPUTS */
+input, select, textarea {
+  padding: 0.5rem 0.75rem;
+  border-radius: var(--radius);
+  border: 1px solid var(--input);
+  background-color: transparent;
+  font-size: 0.875rem;
+  color: var(--foreground);
+  width: 100%;
+}
+input:focus, select:focus, textarea:focus { outline: 2px solid var(--ring); outline-offset: 2px; }
+
+/* 3. BADGES */
+.badge {
+  display: inline-flex;
+  align-items: center;
+  border-radius: 9999px;
+  padding: 0.125rem 0.625rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  white-space: nowrap;
+}
+.badge-default { background-color: var(--primary); color: var(--primary-foreground); }
+.badge-secondary { background-color: var(--muted); color: var(--foreground); }
+.badge-outline { border: 1px solid var(--border); color: var(--foreground); }
+
+/* RBAC Specific Badges */
+.badge-admin { background-color: #fee2e2; color: #991b1b; }
+.badge-manager { background-color: #dbeafe; color: #1e40af; }
+.badge-student { background-color: #f1f5f9; color: #475569; }
+
+/* 4. UTILITIES */
+.code {
+  font-family: monospace;
+  background: var(--muted);
+  padding: 0.2rem 0.4rem;
+  border-radius: 4px;
+  font-size: 0.9em;
+}
+
 .container {
   width: 100%;
   max-width: 80rem;
@@ -61,144 +181,4 @@ body {
   display: flex;
   flex-direction: column;
   gap: var(--space-sm);
-}
-
-a {
-  color: inherit;
-  text-decoration: none;
-  transition: opacity 0.2s ease;
-}
-
-a:hover {
-  opacity: 0.8;
-}
-
-button {
-  cursor: pointer;
-  border: none;
-  background: none;
-  font-family: inherit;
-}
-
-/* Auth Pages */
-.auth-container {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  min-height: 100vh;
-  padding: var(--space-md);
-}
-
-.auth-card {
-  background: var(--background);
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
-  padding: var(--space-lg);
-  max-width: 24rem;
-  width: 100%;
-  box-shadow: 0 4px 24px hsl(220 30% 10% / 0.08);
-}
-
-.auth-card h1 {
-  font-size: 1.5rem;
-  margin-block-end: var(--space-xs);
-}
-
-.auth-subtitle {
-  color: var(--secondary);
-  margin-block-end: var(--space-md);
-}
-
-.auth-form {
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-sm);
-}
-
-.auth-form label {
-  font-weight: 500;
-  font-size: 0.875rem;
-}
-
-.auth-form input {
-  padding: var(--space-xs) var(--space-sm);
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
-  font-size: 1rem;
-  background: var(--background);
-  color: var(--foreground);
-}
-
-.auth-form input:focus {
-  outline: 2px solid var(--primary);
-  outline-offset: 1px;
-}
-
-.auth-form button {
-  background: var(--primary);
-  color: white;
-  padding: var(--space-xs) var(--space-sm);
-  border-radius: var(--radius);
-  font-weight: 500;
-  margin-block-start: var(--space-xs);
-  transition: opacity 0.2s ease;
-}
-
-.auth-form button:hover {
-  opacity: 0.9;
-}
-
-.auth-form button:disabled {
-  opacity: 0.5;
-  cursor: not-allowed;
-}
-
-.auth-message {
-  font-size: 0.875rem;
-  color: var(--secondary);
-}
-
-/* Dashboard */
-.dashboard-container {
-  max-width: 64rem;
-  margin-inline: auto;
-  padding: var(--space-md);
-}
-
-.dashboard-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-block-end: var(--space-lg);
-}
-
-.signout-button {
-  display: flex;
-  align-items: center;
-  gap: var(--space-xs);
-  background: transparent;
-  color: var(--secondary);
-  padding: var(--space-xs) var(--space-sm);
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
-  transition: background 0.2s ease;
-}
-
-.signout-button:hover {
-  background: var(--border);
-}
-
-.profile-card {
-  background: var(--background);
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
-  padding: var(--space-md);
-}
-
-.profile-card h2 {
-  margin-block-end: var(--space-sm);
-}
-
-.profile-card p {
-  margin-block-end: var(--space-xs);
 }

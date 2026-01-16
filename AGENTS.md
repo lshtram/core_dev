@@ -21,6 +21,8 @@
 
 At startup, run `.agent/scripts/read_context.sh` to load immediate context (Git status, Tasks, Docs).
 
+- **Mandatory Read**: `docs/ENGINEERING_STACK.md` (Architecture & Tools).
+
 - **Capabilities**: Reference `.agent/skills/README.md` for available tools.
 
 ## Boundaries

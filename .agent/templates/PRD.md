@@ -6,39 +6,50 @@
 **Goal**: [What does success look like?]
 **Context**: [Why now? Any dependencies?]
 
-## 1.5 Traceability & Test Plan
+## 1.5 Traceability
 
-**Tracing Matrix**: Map every requirement to a specific test file/suite.
-
-| Req ID    | Requirement                   | Type | Test File                    | Verified? |
-| :-------- | :---------------------------- | :--- | :--------------------------- | :-------- |
-| **REQ-1** | User can login via email/pass | E2E  | `tests/auth/login.spec.ts`   | 🔴        |
-| **REQ-2** | Profile creation on signup    | Unit | `tests/auth/profile.test.ts` | 🔴        |
-| **REQ-3** | Admin access restricted       | RLS  | `tests/db/rls.test.ts`       | 🔴        |
+**ID**: [FEAT-ID]
+**Tech Spec**: [docs/TECH_SPEC.md]
 
 ## 2. User Stories
 
-| Actor    | Input / Action           | Expected Outcome        | Priority |
-| :------- | :----------------------- | :---------------------- | :------- |
-| **User** | Enters valid credentials | Redirected to Dashboard | P0       |
-| **User** | Clicks 'Forgot Password' | Receives magic link     | P1       |
+| Actor    | Action   | Outcome            | Priority |
+| :------- | :------- | :----------------- | :------- |
+| **User** | [Action] | [Expected Outcome] | P0       |
 
-## 3. Detailed Requirements
+## 3. Requirements
 
-### 3.1 Functional
+- **Functional**:
+  - [High Level Item]
+- **Non-Functional**:
+  - [High Level Item]
 
-**[REQ-1] Authentication**
+### 3.1 Detailed Requirements & Test Traceability
 
-- **Description**: Standard username/password flow.
-- **Constraints**: Minimum 8 chars, 1 number.
-- **Error Handling**: Show "Invalid credentials" on failure.
+> **Legend**: ✅ = Pass, ❌ = Fail, 🚧 = In Progress
+> **Traceability**: Must link to specific test files.
 
-### 3.2 Non-Functional
+#### REQ-[GROUP]: [Group Name]
 
-- **Performance**: Login < 500ms.
-- **Security**: Rate limiting (5 attempts/min).
+| ID              | Requirement              | Priority | Status | Verified By (File > Test) | Notes  |
+| :-------------- | :----------------------- | :------: | :----: | :------------------------ | :----- |
+| REQ-[GROUP]-001 | **[Title]**: Description |    P0    |   ❌   | `tests/path/to.test.ts`   | [Note] |
+
+#### REQ-[GROUP2]: [Group Name]
+
+| ID               | Requirement              | Priority | Status | Verified By (File > Test)    | Notes  |
+| :--------------- | :----------------------- | :------: | :----: | :--------------------------- | :----- |
+| REQ-[GROUP2]-001 | **[Title]**: Description |    P0    |   ❌   | `tests/ui/component.spec.ts` | [Note] |
 
 ## 4. Success Metrics
 
-- [Metric 1]
-- [Metric 2]
+- **Metric**: [Target]
+
+## 5. Competitive Comparison (Optional)
+
+| Feature | Competitor | Our Solution |
+| :------ | :--------- | :----------- |
+
+## 6. Intentional Omissions (Optional)
+
+- **[Feature]**: [Reason for exclusion]

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>403 Access Denied</title>
+    <link rel="stylesheet" href="shared.css">
+    <style>
+        body {
+            /* Layout specific override */
+            display: flex;
+            height: 100vh;
+            align-items: center;
+            justify-content: center;
+            background-color: #f8fafc; /* Specific BG for this page */
+        }
+
+        .container {
+            text-align: center;
+            background: white;
+            padding: 3rem;
+            border-radius: 1rem;
+            box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+            border: 1px solid var(--border);
+            max-width: 400px;
+        }
+
+        .icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            display: block;
+        }
+
+        h1 {
+            margin: 0 0 0.5rem 0;
+            font-size: 1.5rem;
+            font-weight: 700;
+        }
+
+        p {
+            color: var(--muted-foreground);
+            line-height: 1.5;
+            margin-bottom: 2rem;
+        }
+
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <span class="icon">🚫</span>
+        <h1>Access Denied</h1>
+        <p>You do not have the required permissions (Role: <span class="code">Student</span>) to view this resource.</p>
+        <a href="/dashboard" class="btn">Return to Dashboard</a>
+    </div>
+
+</body>
+</html>

@@ -6,33 +6,35 @@ export type Json =
   | { [key: string]: Json | undefined }
   | Json[]
 
+export type AppRole = 'system_admin' | 'org_admin' | 'manager' | 'teacher' | 'student'
+
 export type Database = {
   public: {
     Tables: {
       profiles: {
         Row: {
-          avatar_url: string | null
-          created_at: string | null
-          full_name: string | null
           id: string
-          metadata: Json | null
-          role: Database["public"]["Enums"]["user_role"] | null
+          updated_at: string | null
+          full_name: string | null
+          avatar_url: string | null
+          website: string | null
+          role: AppRole
         }
         Insert: {
-          avatar_url?: string | null
-          created_at?: string | null
-          full_name?: string | null
           id: string
-          metadata?: Json | null
-          role?: Database["public"]["Enums"]["user_role"] | null
+          updated_at?: string | null
+          full_name?: string | null
+          avatar_url?: string | null
+          website?: string | null
+          role?: AppRole
         }
         Update: {
-          avatar_url?: string | null
-          created_at?: string | null
-          full_name?: string | null
           id?: string
-          metadata?: Json | null
-          role?: Database["public"]["Enums"]["user_role"] | null
+          updated_at?: string | null
+          full_name?: string | null
+          avatar_url?: string | null
+          website?: string | null
+          role?: AppRole
         }
         Relationships: []
       }
@@ -41,10 +43,13 @@ export type Database = {
       [_ in never]: never
     }
     Functions: {
-      [_ in never]: never
+      user_role: {
+        Args: Record<PropertyKey, never>
+        Returns: AppRole
+      }
     }
     Enums: {
-      user_role: "admin" | "manager" | "teacher" | "student"
+      app_role: AppRole
     }
     CompositeTypes: {
       [_ in never]: never
@@ -131,4 +136,3 @@ export type Enums<
   : PublicEnumNameOrOptions extends keyof Database["public"]["Enums"]
   ? Database["public"]["Enums"][PublicEnumNameOrOptions]
   : never
-

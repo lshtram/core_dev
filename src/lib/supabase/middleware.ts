@@ -48,6 +48,27 @@ export async function updateSession(request: NextRequest) {
     return NextResponse.redirect(new URL('/dashboard', request.url))
   }
 
+  // RBAC: Admin Route Protection
+  if (user && pathname.startsWith('/dashboard/admin')) {
+    // 1. Fetch Role from Profiles
+    const { data: profile } = await supabase
+      .from('profiles')
+      .select('role')
+      .eq('id', user.id)
+      .single()
+
+    const userRole = profile?.role
+
+    // 2. Check Hierarchy (Allowed: system_admin, org_admin)
+    // Note: We use string array for simplicity in middleware to avoid large dependency imports
+    const allowedRoles = ['system_admin', 'org_admin']
+    
+    if (!userRole || !allowedRoles.includes(userRole)) {
+      // Redirect to 403 if unauthorized
+      return NextResponse.redirect(new URL('/403', request.url))
+    }
+  }
+
   return response
 }
 
