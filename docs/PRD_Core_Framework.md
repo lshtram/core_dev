@@ -46,7 +46,7 @@
 
 | ID        | Capability           | Priority | Status | Verified By            |
 | :-------- | :------------------- | :------: | :----: | :--------------------- |
-| FEAT-RBAC | **Full RBAC System** |    P0    |   ❌   | See `docs/PRD_RBAC.md` |
+| FEAT-RBAC | **Full RBAC System** |    P0    |   ✅   | See `docs/PRD_RBAC.md` |
 
 #### REQ-FILE: File System & Storage
 
@@ -114,7 +114,7 @@
 | REQ-UI-002 | **Signup Page**: Form           |    P0    |   🔄   | `tests/e2e/auth/signup.spec.ts`     |       |
 | REQ-UI-003 | **Reset Password**: UI          |    P0    |   ❌   | `tests/e2e/auth/reset.spec.ts`      |       |
 | REQ-UI-004 | **Dashboard**: Protected home   |    P0    |   ✅   | `tests/e2e/dashboard.spec.ts`       |       |
-| REQ-UI-005 | **Admin Users**: List view      |    P0    |   ❌   | See `docs/PRD_RBAC.md`              |       |
+| REQ-UI-005 | **Admin Users**: List view      |    P0    |   ✅   | See `docs/PRD_RBAC.md`              |       |
 | REQ-UI-006 | **File Explorer**: UI component |    P1    |   ❌   | `tests/e2e/files/explorer.spec.ts`  |       |
 | REQ-UI-007 | **Notify Tester**: UI           |    P2    |   ❌   | `tests/e2e/admin/notify.spec.ts`    |       |
 | REQ-UI-008 | **Provider Tester**: UI         |    P2    |   ❌   | `tests/e2e/admin/providers.spec.ts` |       |
