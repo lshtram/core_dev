@@ -56,6 +56,23 @@ These standards are "Labor-Intensive but High-ROI." They prioritize portability,
     }
     ```
 
-## 5. CSS Modules & Tokens
-- **Naming**: camelCase (e.g., `.primaryButton`).
-- **Values**: STRICT usage of `styles/tokens.css`. No hex codes in CSS files.
+## 5. React Safety Patterns
+- **Active Flag (useEffect)**: Prevent "update after unmount" in async hooks.
+    ```tsx
+    useEffect(() => {
+      let active = true;
+      const loadData = async () => {
+        const data = await fetchData();
+        if (active) setData(data);
+      };
+      loadData();
+      return () => { active = false; };
+    }, [fetchData]);
+    ```
+- **Controller Hoisting**: Extract state logic to a specialized ViewModel hook (e.g., `useComponentViewModel()`) to enable parent-level injection or global shortcut control.
+
+## 6. Performance Standards
+- **Initial Bundle**: Target < 500 KB (Initial), < 200 KB (Chunks).
+- **Parallel Fetch**: Use `Promise.all()` for independent data loads.
+- **Virtualization**: Mandatory for lists > 100 items (use `react-window`).
+

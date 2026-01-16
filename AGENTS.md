@@ -10,7 +10,8 @@
 - Reference: `.agent/GUIDELINES.md` for behavioral rules, `.agent/CODING_STYLE.md` for technical standards.
 
 ## Execution Manifest
-At startup, run `strong-prompt` in **Audit Mode** (Silent Check). Only interrupt if critical risks or ambiguities are found.
+At startup, run `strong-prompt` in **Audit Mode**.
+- **Capabilities**: Reference `.agent/skills/README.md` for available tools.
 
 ## Boundaries
 - **Forbidden:** Modifying `.env` files, deleting root directories without confirmation.
@@ -21,3 +22,4 @@ At startup, run `strong-prompt` in **Audit Mode** (Silent Check). Only interrupt
 1. **Tier 1 (Startup)**: `AGENTS.md`, `.agent/PROCESS.md`, `README.md`.
 2. **Tier 2 (Planning)**: `.agent/GUIDELINES.md`, `.agent/CODING_STYLE.md`.
 3. **Tier 3 (Execution)**: Feature-specific docs, sub-module `ARCHITECTURE.md`.
+4. **Light Mode**: Skip Tier 3 if unrelated. Focus on `AGENTS.md` + Current File.

@@ -1,0 +1,121 @@
+#!/bin/bash
+
+# Agentic Platform CLI
+# Usage: ./agent <command> [args]
+
+COMMAND=$1
+SHIFT_ARGS="${@:2}"
+
+case $COMMAND in
+  "setup")
+    # Install core engine dependencies
+    echo "Installing SDLC Engine dependencies..."
+    npm install react react-dom
+    npm install -D typescript plop husky vitest @testing-library/react markdownlint-cli2
+    npx husky init
+    echo "python3 .agent/scripts/verify.py --types" > .husky/pre-commit
+    chmod +x .agent/scripts/*.py
+    echo "Engine Setup Complete."
+    ;;
+
+  "start")
+    # Usage: ./agent start [--light] <name>
+    # Or:    ./agent start <name> [--light]
+    
+    # Parse args
+    IS_LIGHT=false
+    TASK_NAME=""
+
+    for arg in "$@"; do
+      if [ "$arg" == "--light" ]; then
+        IS_LIGHT=true
+      elif [ "$arg" != "start" ]; then
+        TASK_NAME=$arg
+      fi
+    done
+
+    if [ -z "$TASK_NAME" ]; then
+      echo "Error: Task name required."
+      echo "Usage: ./agent start <task-name> [--light]"
+      exit 1
+    fi
+
+    if [ "$IS_LIGHT" == "true" ]; then
+      echo "🟢 Starting LIGHT MODE task: $TASK_NAME"
+      echo "Checking git status..."
+      if [ -n "$(git status --porcelain)" ]; then
+         echo "⚠️  WARNING: You have uncommitted changes. Light mode runs on the current branch."
+         echo "Proceeding..."
+      fi
+      
+      echo "LIGHT" > .agent/scratchpad/WORKFLOW_MODE
+      echo "$TASK_NAME" > .agent/scratchpad/CURRENT_TASK
+      echo "✅ Light Mode Context Set. Ready to work on current branch."
+
+    else
+      echo "🔵 Starting STANDARD MODE task: $TASK_NAME"
+      WORKTREE_PATH=".worktrees/$TASK_NAME"
+
+      if [ -d "$WORKTREE_PATH" ]; then
+        echo "🔄 Worktree already exists at $WORKTREE_PATH"
+        echo "Re-attaching context..."
+      else
+        echo "🔨 Creating new worktree at $WORKTREE_PATH..."
+        git worktree add $WORKTREE_PATH -b $TASK_NAME
+        
+        # Init task.md if it doesn't exist
+        if [ ! -f "$WORKTREE_PATH/task.md" ]; then
+             echo "# Task: $TASK_NAME" > "$WORKTREE_PATH/task.md"
+             echo "- [ ] Initial Analysis" >> "$WORKTREE_PATH/task.md"
+        fi
+      fi
+
+      echo "STANDARD" > .agent/scratchpad/WORKFLOW_MODE
+      echo "$TASK_NAME" > .agent/scratchpad/CURRENT_TASK
+      
+      echo ""
+      echo "✅ Task Environment Ready."
+      echo "👉 To switch to this task context:"
+      echo "   cd $WORKTREE_PATH"
+      echo "   (Or instruct the agent to work in that directory)"
+    fi
+    ;;
+  
+  "audit")
+    # Unified verification
+    python3 .agent/scripts/verify.py $SHIFT_ARGS
+    ;;
+  
+  "trace")
+    # Traceability Matrix
+    python3 .agent/scripts/trace.py
+    ;;
+  
+  "adr")
+    # Architectural Decision Records
+    python3 .agent/scripts/create_adr.py "$SHIFT_ARGS"
+    ;;
+  
+  "generate")
+    # Component/Module Scaffolding
+    npm run generate
+    ;;
+  
+  "help" | "-h" | "--help" | "")
+    echo "Usage: ./agent <command>"
+    echo ""
+    echo "Commands:"
+    echo "  start <name> [--light]   Start task. Standard creates worktree. Light updates context only."
+    echo "  audit                    Run verification (lint, types, tests)."
+    echo "  audit --docs             Run markdownlint on scratchpad artifacts."
+    echo "  adr \"Title\"              Create a new Architecture Decision Record."
+    echo "  generate                 Launch Plop component generator."
+    echo "  help                     Show this message."
+    ;;
+  
+  *)
+    echo "Unknown command: $COMMAND"
+    echo "Run './agent help' for usage."
+    exit 1
+    ;;
+esac

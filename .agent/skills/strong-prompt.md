@@ -10,7 +10,7 @@
 
 ## Algorithm (Steps)
 
-### Phase 1: Classification (Internal Monologue)
+### Phase 1: Classification
 1. **Analyze Intent**: What is the user *really* asking?
 2. **Safety Check**: Does this touch Auth, Payments, or Data Deletion? -> `[Risk: HIGH]`
 3. **Clarity Score**: 1-5. If < 4, flag missing info.
@@ -20,25 +20,16 @@
     - If `Risk > Medium` OR `Clarity < 4`: **STOP**. Output `Clarification Request`.
     - Else: **PASS**. (Do nothing, let execution proceed).
 - **IF Iterative Mode**:
-    - Generate `PLAN_current.md`.
-    - Recommend **Perspectives** (e.g., "Consult Security & UX").
-    - Recommend **Sub-Skills** (e.g., "Activate `pattern-enforcement`").
+    - **Registry Lookup**: Read `.agent/skills/README.md`.
+    - **Strategy**: Select the best skills for the job.
+    - **Generate**: `PLAN_current.md`.
 
 ## Output Format (Iterative / Clarification Only)
 
 ```markdown
-### 🛑 Orchestrator Pause
-**Reason**: [Ambiguity | Security Risk]
-**Missing Info**:
-- [Question 1]
-- [Question 2]
-```
-
-OR
-
-```markdown
 ### 🚀 Strategic Plan
-**Perspectives**: [List]
-**Recommended Skills**: [List]
+**Recommended Skills**:
+- `perspective-engineering` (for Architectural Debate)
+- `test-architect` (for TDD Strategy)
 **Next Step**: [Step 1 Description]
 ```

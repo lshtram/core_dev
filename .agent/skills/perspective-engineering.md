@@ -9,25 +9,22 @@
 
 ## Algorithm (Steps)
 
-1. **Nominate**: Select 2-3 relevant personas based on task type.
-    - *UI Task*: UX Designer vs. Frontend Architect.
-    - *Data Task*: DBA vs. Backend Developer.
-    - *Security Task*: Hacker vs. SysAdmin.
+1. **Role Nomination (Dynamic)**:
+    - Analyze the user request.
+    - Identify 3 distinct viewpoints required (e.g., for a "Database Migration": *Senior DBA*, *DevOps Engineer*, *Product Owner*).
+    - **Constraint**: Do not use generic roles. Tailor them to the specific domain.
 2. **Debate**:
     - **Persona A** proposes a solution.
     - **Persona B** critiques it (focusing on their domain).
 3. **Synthesize**: The Moderator (You) extracts the "Golden Path" that satisfies both constraints.
 
-## Personas Library
-- **The User (UX)**: "Make it simple, make it fast."
-- **The Security Auditor**: "Trust input? Never."
-- **The Product Manager**: "Does this meet requirements?"
-
 ## Output Format
 
 ```markdown
 ### 🧠 Expert Panel Debate
-**UX Perspective**: [Concerns about latency]
-**Security Perspective**: [Concerns about XSS]
-**Consensus**: [Proposed Solution that uses Optimistic UI + Sanitize]
+**Roles Selected**: [List of 3 tailored roles]
+**Debate**:
+- **[Role A]**: [Argument]
+- **[Role B]**: [Counter-argument]
+**Consensus**: [Proposed Solution]
 ```

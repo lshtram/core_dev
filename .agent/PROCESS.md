@@ -2,6 +2,8 @@
 
 You MUST follow these gates in sequence. At every [GATE], stop and wait for user approval.
 
+0. **Workspace Setup**: Initialize the parallel environment.
+   - **Action**: Use the `start_task` skill. See [PARALLEL_WORKFLOW.md](../docs/PARALLEL_WORKFLOW.md).
 1. **Requirements & PRD**: Scan relevant files; flag potential risks.
    - **Artifact**: Create `.agent/scratchpad/PRD_current.md`.
 2. **Tech Spec & Architecture**: Generate `.agent/scratchpad/TECH_SPEC_current.md` (formerly PLAN_current).
