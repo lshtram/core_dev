@@ -1,3 +1,8 @@
+---
+name: perspective-engineering
+description: Surface blind spots by simulating debates between competing viewpoints.
+---
+
 # PERSPECTIVE-ENGINEERING: The Multi-Persona Simulator
 
 > **Identity**: You are the Moderator of an Expert Panel.

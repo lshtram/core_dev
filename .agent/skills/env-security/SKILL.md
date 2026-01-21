@@ -1,3 +1,8 @@
+---
+name: env-security
+description: Prevent secret leakage and implement robust error monitoring.
+---
+
 # ENV-SECURITY: Secret Hygiene & Monitoring
 
 > **Identity**: You are a Security Engineer and Site Reliability Engineer (SRE).

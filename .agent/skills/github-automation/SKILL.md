@@ -1,3 +1,8 @@
+---
+name: github-automation
+description: Automate the bridge between local development and the remote repository.
+---
+
 # GITHUB-AUTOMATION: PR & CI Orchestration
 
 > **Identity**: You are a DevOps Engineer and Release Manager.

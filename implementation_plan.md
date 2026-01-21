@@ -1,76 +1,74 @@
-# Implementation Plan - RBAC Feature
+# Implementation Plan - Skill Registry Refactor
 
-This plan covers the end-to-end implementation of the Role-Based Access Control system, ensuring strict adherence to the [PRD](../docs/PRD_RBAC.md) and [Tech Spec](../docs/TECH_SPEC.md).
+We will transition from a flat Markdown-based skill list to the structured "Claude Skills" format. This enables better automation, reuse of scripts, and clearer context management.
 
 ## User Review Required
 
-> [!IMPORTANT] > **Database Migration**: This plan involves a database migration to add the `app_role` enum. This is a destructive/schema-altering change.
-> **Middleware**: Global middleware will be updated to enforce RBAC. This could affect existing routes if not tested carefully.
+> [!IMPORTANT]
+> **Breaking Change**: The `.agent/skills/` directory structure will be completely reorganized. Any existing workflows (or memory) relying on specific file paths (e.g., `.agent/skills/start_task.md`) will need to be updated to point to `.agent/skills/start-task/SKILL.md`.
+
+## Proposed Structure
+
+```text
+.agent/
+  skills/
+    README.md             <-- Updated Registry
+    common/               <-- NEW: Shared resources
+      scripts/            <-- Reusable scripts (e.g., git ops, file ops)
+    start-task/           <-- Example Migrated Skill
+      SKILL.md            <-- With YAML frontmatter
+      scripts/
+        init_worktree.py  <-- Specific automation
+    supabase-mastery/
+      SKILL.md
+    ...
+```
 
 ## Proposed Changes
 
-### Design System (Step 0)
+### 1. Infrastructure Setup
 
-#### [MODIFY] `src/app/globals.css`
+#### [NEW] Common Script Library
 
-- Port variables from `docs/prototypes/style_guide.html`.
-- Define standard utility classes (`.btn`, `.badge`, `.input` etc) to ensure consistency.
+- Create `.agent/skills/common/scripts/`.
+- Move generic logic from `.agent/scripts/` if applicable, or create new helpers for common tasks (e.g., `git_helpers.py`, `context_loader.py`).
 
-### Database Layer
+### 2. Migration Phase 1: Core Skills
 
-#### [NEW] `supabase/migrations/20240101000000_add_rbac.sql`
+We will migrate the "Lifecycle" skills first as they are used most frequently.
 
-- Define `app_role` enum (`system_admin`, `org_admin`, `manager`, `teacher`, `student`).
-- Add `role` column to `public.profiles`.
-- implementation of `auth.user_role()` helper function.
-- RLS Policies for "Public Read", "Self Update", "Admin Update".
+#### [MODIFY] [start_task.md] -> [start-task/SKILL.md]
 
-### Core Type System
+- **Action**: Move file, add YAML frontmatter.
+- **Enhancement**: Extract the "Create Worktree" logic into a Python script `scripts/setup_worktree.py` to automate the process instead of asking the user to run it.
 
-#### [MODIFY] `src/types/database.types.ts`
+#### [MODIFY] [finish_task.md] -> [finish-task/SKILL.md]
 
-- Update with new schema (via generation or manual sync for now).
+- **Action**: Move file, add YAML frontmatter.
+- **Enhancement**: Create a `scripts/verify_and_merge.py` script to run the verification suite and git operations.
 
-#### [NEW] `src/types/rbac.ts`
+### 3. Migration Phase 2: Domain Skills
 
-- Helper types for Role checks in frontend code.
+Flatten the remaining files into their own folders.
 
-### Middleware & Security
+- `supabase-mastery.md` -> `supabase-mastery/SKILL.md`
+- `strong-prompt.md` -> `strong-prompt/SKILL.md`
+- _Note_: Simple skills will just have `SKILL.md` and no `scripts/` folder, as requested.
 
-#### [MODIFY] `src/middleware.ts`
+### 4. Registry Update
 
-- Update `updateSession` to inspect user role.
-- Implement redirection logic for `/dashboard/admin` -> `/403` if role < `org_admin`.
+#### [MODIFY] [.agent/skills/README.md]
 
-### UI Components (Code-First Verification)
-
-> Reference: `docs/prototypes/rbac_admin_dashboard.html` & `docs/prototypes/rbac_403.html`
-
-#### [NEW] `src/components/rbac/RoleBadge.tsx`
-
-- Component to display role with correct color coding (Red/Blue/Gray).
-
-#### [NEW] `src/app/403/page.tsx`
-
-- Implementation of the Access Denied page.
-
-#### [NEW] `src/app/dashboard/admin/page.tsx`
-
-- The main Admin Dashboard table.
-- **Storybook**: `stories/admin/Dashboard.stories.tsx`.
+- Update all links to point to the new `SKILL.md` paths.
+- Update the description to explain the new "Tool" capability.
 
 ## Verification Plan
 
 ### Automated Tests
 
-- **Unit (RLS)**: `npm test tests/auth/rbac_schema.test.ts` (Verify DB constraints).
-- **Unit (Components)**: `npm test tests/components/UserRow.test.tsx`.
-- **E2E**: `npm test tests/e2e/admin/dashboard.spec.ts` (Navigate as Admin vs Student).
+- None (This is a structural refactor).
 
 ### Manual Verification
 
-1. **Migrations**: Apply migration locally (`supabase db reset`).
-2. **Storybook**: Run `npm run storybook` and verify `RoleBadge` and `Dashboard` states.
-3. **Browser**:
-   - Log in as Admin -> Visit `/dashboard/admin` -> Pass.
-   - Log in as Student -> Visit `/dashboard/admin` -> Redirect to `/403`.
+1. **Load Registry**: Read `.agent/skills/README.md` and ensure links work.
+2. **Test Skill**: effective test of `start-task` by creating a dummy worktree using the new automation.

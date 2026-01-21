@@ -11,6 +11,30 @@
 - You are **Efficiency-First**: Use the automated verification scripts in `.agent/scripts/` to keep tokens lean.
 - Reference: `.agent/GUIDELINES.md` for behavioral rules, `.agent/CODING_STYLE.md` for technical standards.
 
+## Agent Capabilities & On-Demand Tools (Progressive Disclosure)
+
+### Available MCP Servers (Load on Demand)
+
+The following servers are configured but **DORMANT** by default. Only load them when the task explicitly requires their capabilities.
+
+- **supabase-mcp**: [Dormant] Use for database schema migrations, SQL queries, and RLS policy management.
+- **context7**: [Dormant] Use to fetch up-to-date documentation and SDK references.
+- **firecrawl**: [Dormant] Use for web scraping, crawling, or browser-based testing.
+- **filesystem**: [Dormant] Use for controlled access to local files (beyond standard editing).
+- **e2b**: [Dormant] Use for executing code in a secure sandboxed environment.
+- **github-manager**: [Dormant] Use for managing Pull Requests, Issues, and Repository data.
+- **google-workspace**: [Dormant] Use for accessing Docs, Sheets, and Drive.
+- **google-cloud-assist**: [Dormant] Use for GCP Kubernetes and resource management.
+- **browserbase**: [Dormant] Use for advanced headless browser sessions.
+- **stripe**: [Dormant] Use for querying payment/customer data or managing subscriptions.
+- **vercel**: [Dormant] Use for managing deployments and environment variables.
+
+### Loading Instructions
+
+1.  **Check Manifest**: If a task requires a specific "Hand" (MCP), check the list above.
+2.  **Load Server**: Invoke the loading mechanism (e.g., `mcp.load_server("server-name")` or equivalent tool if available).
+3.  **Minimal Context**: Do not load all servers. Only load the one required for the current reasoning path.
+
 ## Execution Manifest
 
 **CRITICAL**: At the start of EVERY session, you must:
