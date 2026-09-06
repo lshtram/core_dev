@@ -52,7 +52,7 @@ At startup, run `.agent/scripts/read_context.sh` to load immediate context (Git 
 ## Boundaries
 
 - **Forbidden:** Modifying `.env` files, deleting root directories without confirmation, **bypassing verification checks** (e.g., `--no-verify`, ignoring build errors) without explicit permission.
-- **Ask First:** Installing new dependencies, making database schema changes.
+- **Ask First:** Installing new dependencies, making database schema changes, **building new skills** (must use `skill-builder` and get approval).
 - **Auto-Allowed:** Reading any file, running automated tests, creating/editing components within established patterns.
 
 ## Context Tiers (Token Management)
